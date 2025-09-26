@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>//Para método system, que permite apagar o terminal
 /*Os comentários são pra minha própria compreensão durante o processo de escrita do código
 peço que ignore os comentários e o dialéto do javinha utilizado(me sinto mais confortável) kk*/
 int main() {
@@ -80,6 +81,59 @@ int main() {
     }
 
     //Main do jogo, laço principal onde o jogo irá se manter até a vitória ou derrota;
+    int jogoAtivo = 1;
+
+    while (jogoAtivo) {
+        //Limpa tela, insere perfurmaria (linhas e espaçamentos) e imprime tabuleiro view
+        system("cls");
+        printf("    ");
+        for (j = 0; j < tamanho; j++) {
+            printf("%2d", j);//Espaçamento entre as colunas
+        }
+        printf("\n");
+
+        printf("    ");
+        for (j = 0; j < tamanho; j++) {
+            printf("---");//Perfurmaria, linhas horizontais
+        }
+        printf("\n");
+
+        //Imprime tabuleiro view
+        for (i = 0; i < tamanho; i++) {
+            printf("%2d | ", i++);//Perfumaria, linhas verticais
+            for (j = 0; j < tamanho; j++) {
+                if (tabuleiro_view[i][j] == 0) {
+                    //Posição oculta, exibe O
+                    printf(" O ");
+                } else {
+                    //Se posicao revelada
+                    if (tabuleiro_model[i][j] == 0) {
+                        //E não há minas em volta
+                        printf(" X ");
+                    } else {
+                        //Há minas em volta, então exibe o número de minas em volta
+                        printf(" %d ", tabuleiro_model[i][j]);
+                    }
+                }
+
+            }
+        }
+        printf("\n");
+
+        //Set jogada
+        printf("\nDigite a sua jogada (linha : coluna): ");
+        scanf("%d %d", &linha, &coluna);
+
+        //Valida jogada
+        if (linha < 0 || linha >= tamanho || coluna < 0 || coluna >= tamanho) {
+            printf("Posição invalida! Pressione Enter para continuar. . .");
+            getchar();//Limpa o buffer, 
+            getchar();//Limpa o enter que funciona como uma pausa, solicitando o jogador a pressionar para continuar
+        }
+
+        
+    }
+    
 
     return 0;
 }
