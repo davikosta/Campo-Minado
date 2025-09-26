@@ -1,5 +1,6 @@
 #include <stdio.h>
-//Os comentários são pra minha própria compreensão durante o processo de escrita do código, peço que ignore os comentários e o dialéto do javinha utilizado(me sinto mais confortável) kk
+/*Os comentários são pra minha própria compreensão durante o processo de escrita do código
+peço que ignore os comentários e o dialéto do javinha utilizado(me sinto mais confortável) kk*/
 int main() {
 
     //Set tamanho tabuleiro
@@ -56,8 +57,29 @@ int main() {
         tabuleiro_model[linha][coluna] = -1;//-1 representa uma mina no tabuleiro
     }
 
+    //Calcula minas vizinhas
+    for (i = 0; i < tamanho; i++) {
+        for (j = 0; j < tamanho; j++) {
+            // Se posição atual diferente de uma mina(-1), contar vizinhas
+            if (tabuleiro_model[i][j] != -1) {
+                int minasVizinhas = 0;
+                // Laços para verificar as 8 possíveis posições das minas vizinhas(verticais e horizontais). viz_i para linhas, viz_j para colunas
+                for (int viz_i = i - 1; viz_i <= i + 1; viz_i++) {
+                    for (int viz_j = j - 1; viz_j <= j + 1; viz_j++) {
+                        //Verifica se coordenada vizinha está dentro dos limites do tabuleiro
+                        if (viz_i >= 0 && viz_i < tamanho && viz_j > 0 && viz_j < tamanho) {
+                            if (tabuleiro_model[viz_i][viz_j] == -1) {
+                                minasVizinhas++;
+                            } 
+                        }
+                    }
+                }
+                tabuleiro_model[i][j] = minasVizinhas;
+            }
+        }
+    }
 
-
+    //Main do jogo, laço principal onde o jogo irá se manter até a vitória ou derrota;
 
     return 0;
 }
