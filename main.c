@@ -32,13 +32,30 @@ int main() {
     }
 
     //Inicializa tabuleiros
-    int i, j, k;
+    int i, j, k;//iteradores
     for (i = 0; i < tamanho; i++) {
         for (j = 0; j < tamanho; j++) {
             tabuleiro_model[i][j] = 0;//Zero indica uma casa segura, sem minas em volta
-            tabuleiro_view[i][j] = 0;//Zero indica casa oculta, 1 indica 
+            tabuleiro_view[i][j] = 0;//Zero indica casa oculta, 1 indica casa revelada
         }
     }
+
+    //Set minas (linha : coluna)
+    int linha, coluna;
+    printf("Digite as posicoes das %d minas (Formato: linha coluna)\n", numMinas);
+    for (k = 0; k < numMinas; k++) {
+        printf("Mina: %d: ", k + 1);
+        scanf("%d %d", &linha, &coluna);
+
+        //Valida posicao mina
+        if (linha < 0 || linha >= tamanho || coluna < 0 || coluna >= tamanho || tabuleiro_model[linha][coluna] == -1) {
+            printf("Posicao invalida ou ja ocupada! Tente novamente!\n");
+            k--; //Decrementa o contador, assim o jogador pode inserir novamente sem consumir necessariamente uma repetição
+            continue;//Volta pro começo do laço, pra nova tentativa, sem inserir um valor inválido do tabuleiro model
+        }
+        tabuleiro_model[linha][coluna] = -1;//-1 representa uma mina no tabuleiro
+    }
+
 
 
 
