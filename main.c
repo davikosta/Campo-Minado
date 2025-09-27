@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h> //Para método system, que permite apagar o terminal
 /*Os comentários são pra minha própria compreensão durante o processo de escrita do código
-peço que ignore os comentários e o dialéto do javinha utilizado(me sinto mais confortável) kk*/
+peço que ignore os comentários e o dialéto do javinha incorretamente utilizado(me sinto mais confortável e compreendo melhor o código fazendo paralelos) kk*/
 int main()
 {
 
