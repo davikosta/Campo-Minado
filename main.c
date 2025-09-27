@@ -8,7 +8,7 @@ int main()
     // Set tamanho tabuleiro
     int tamanho;
     printf("Digite o tamanho do tabuleiro: \n");
-    printf("Regra: O número deve estar entre 5 e 100!\n");
+    printf("Regra: O numero deve estar entre 5 e 100!\n");
     scanf("%d", &tamanho);
 
     // Valida tamanho tabuleiro
