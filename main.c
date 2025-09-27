@@ -83,6 +83,9 @@ int main() {
     //Main do jogo, laço principal onde o jogo irá se manter até a vitória ou derrota;
     int jogoAtivo = 1;
 
+    //Atributos necessários para inserir o X nas posições abertas, mas sem minas em volta
+    int ultima_linha = linha, ultima_coluna = coluna;
+
     while (jogoAtivo) {
         //Limpa tela, insere perfurmaria (linhas e espaçamentos) e imprime tabuleiro view
         system("cls");
@@ -100,7 +103,7 @@ int main() {
 
         //Imprime tabuleiro view
         for (i = 0; i < tamanho; i++) {
-            printf("%2d | ", i++);//Perfumaria, linhas verticais
+            printf("%2d | ", i);//Perfumaria, linhas verticais
             for (j = 0; j < tamanho; j++) {
                 if (tabuleiro_view[i][j] == 0) {
                     //Posição oculta, exibe O
@@ -126,10 +129,20 @@ int main() {
 
         //Valida jogada
         if (linha < 0 || linha >= tamanho || coluna < 0 || coluna >= tamanho) {
-            printf("Posição invalida! Pressione Enter para continuar. . .");
-            getchar();//Limpa o buffer, 
+            printf("Posicao invalida! Pressione Enter para continuar. . .");
+            getchar();//Limpa o buffer 
             getchar();//Limpa o enter que funciona como uma pausa, solicitando o jogador a pressionar para continuar
+            continue;
         }
+
+        if (tabuleiro_view[linha][coluna] == 1) {
+            printf("Posicao ja revelada! Pressione Enter para continuar. . .");
+            getchar();
+            getchar();
+            continue;
+        }
+
+
 
         
     }
